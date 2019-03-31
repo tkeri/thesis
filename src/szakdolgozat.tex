@@ -1,0 +1,546 @@
+% LaTeX mintafájl szakdolgozat és diplomamunkáknak az
+% SZTE Informatikai Tanszékcsoportja által megkövetelt
+% formai követelményeinek megvalósításához
+% Modosítva: 2011.04.28 Nemeth L. Zoltan
+% A fájl használatához szükséges a magyar.ldf 2005/05/12 v1.5-ös vagy későbbi verziója
+% ez letölthető a http://www.math.bme.hu/latex/ weblapról, a magyar nyelvű szedéshez
+% Hasznos információk, linekek, LaTeX leírások a www.latex.lap.hu weboldalon vannak.
+%
+
+\documentclass[12pt]{report}
+
+%Magyar nyelvi támogatás (Babel 3.7 vagy későbbi kell!)
+\def\magyarOptions{defaults=hu-min}
+\usepackage[magyar]{babel}
+
+%Az ékezetes betűk használatához:
+\usepackage{t1enc}% ékezetes szavak automatikus elválasztásához
+\usepackage[utf8]{inputenc}% ékezetes szavak beviteléhez
+
+% A formai kovetelmenyekben megkövetelt Times betűtípus használata:
+\usepackage{times}
+
+%Az AMS csomagjai
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%A fejléc láblécek kialakításához:
+\usepackage{fancyhdr}
+
+%Természetesen további csomagok is használhatók,
+%például ábrák beillesztéséhez a graphix és a psfrag,
+%ha nincs rájuk szükség természetesen kihagyhatók.
+\usepackage{graphicx}
+\usepackage{psfrag}
+%_ \usepackage{stackengine,trimclip}
+%_ \usepackage{subcaption}
+
+\usepackage{setspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    pdfauthor={KÉRI Tamás},
+    pdftitle={Fuzz tesztelő keretrendszer bűvítése webes felülettel},
+    pdfsubject={BSc szakdolgozat},
+    pdfkeywords={fuzz testing, web ui, tornado},
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{cite}
+
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\setlist[enumerate]{%
+    topsep=1ex,%
+    itemsep=-1ex,%
+    partopsep=1ex,%
+    parsep=1ex,%
+}
+\setlist[itemize]{%
+    noitemsep,%
+    topsep=1ex,%
+}
+\setlist[description]{%
+    noitemsep,%
+}
+
+% Színek
+\usepackage{color}
+\definecolor{myCommentColorGreen}{RGB}{0,128,0}
+\definecolor{myLineNumberGray}{RGB}{128,128,128}
+
+% Forráskódhoz
+\usepackage{listings}
+\usepackage{lstautogobble}
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else,%
+            finally, for, function, if, in, instanceof, new, return, switch,%
+            this, throw, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  sensitive=true
+}
+\lstset{ %
+    %backgroundcolor=\color{white},   % choose the background color; you must add  \usepackage{color} or \usepackage{xcolor}
+    basicstyle=\scriptsize, %\footnotesize,         % the size of the fonts that are used for    the code
+    %breakatwhitespace=false,         % sets if automatic breaks should only      happen at whitespace
+    breaklines=true,                  % sets automatic line breaking
+    captionpos=b,                    % sets the caption-position to          bottom
+    commentstyle=\color{myCommentColorGreen},    % comment style
+    %deletekeywords={...},            % if you want to delete keywords              from the given language
+    %escapeinside={\%*}{*)},          % if you want to add LaTeX                within your code
+    %extendedchars=true,              % lets you use non-ASCII                  characters; for 8-bits encodings only, does not work with                  UTF-8
+    frame=leftline,                   % adds a frame around the                    code
+    %keepspaces=true,                 % keeps spaces in text,                      useful for keeping indentation of code (possibly needs                      columns=flexible)
+    inputpath=../../../,
+    keywordstyle=\color{blue},        % keyword style
+    language=C++,                     % the language of                          the code
+    literate=%
+        {á}{{\'a}}1
+        {é}{{\'e}}1
+        {í}{{\'i}}1
+        {ó}{{\'o}}1
+        {ö}{{\"o}}1
+        {ő}{{\H{o}}}1
+        {ú}{{\'u}}1
+        {ü}{{\"u}}1
+        {ű}{{\H{u}}}1
+        {Á}{{\'A}}1
+        {É}{{\'E}}1
+        {Í}{{\'I}}1
+        {Ó}{{\'O}}1
+        {Ö}{{\"O}}1
+        {Ő}{{\H{O}}}1
+        {Ú}{{\'U}}1
+        {Ü}{{\"U}}1
+        {Ű}{{\H{U}}}1,
+    %morekeywords={*,...},            % if you want to                            add more keywords to the set
+    numberfirstline=true,
+    numbers=left,                     % where to put                              the line-numbers; possible values are (none, left, right)
+    numbersep=10pt,                   % how far theline-numbers are from the code
+    numberstyle=\tiny\color{myLineNumberGray}, % the stylethat is used for the line-numbers
+    %name=\thelstnumber,              %
+    %rulecolor=\color{black},         % if notset, the frame-color may be changed online-breaks within not-black text (e.g.comments (green here))
+    showspaces=false,                % showspaces everywhere adding particularunderscores; it overrides'showstringspaces'
+    showstringspaces=false,          % underline spaces within strings only
+    showtabs=false,                  % show tabs within strings addingparticular underscores
+    %stepnumber=2,                    % the step between two line-numbers.If it's 1, each line will benumbered
+    %stringstyle=\color{mymauve},     % string literal style
+    tabsize=4,                        % sets default tabsize to 2    spaces
+    %title=\lstname                   % show the filename of     files included with     \lstinputlisting; also try     caption instead of title
+}
+
+% Kép mellett folyó íráshoz
+\usepackage{wrapfig}
+
+\usepackage[labelfont=it,justification=centering]{caption}
+
+\usepackage{epigraph}
+%\epigraphfontsize{\small\itshape}
+
+\usepackage[titletoc,title]{appendix}
+\usepackage{multirow}
+\usepackage{threeparttable}
+%\usepackage{numprint}
+%_ \usepackage{siunitx}
+
+%Tételszerű környezetek definiálhatók, ezek most fejezetenként együtt számozódnak, pl.
+\newtheorem{tét}{Tétel}[chapter]
+\newtheorem{defi}[tét]{Definíció}
+\newtheorem{lemma}[tét]{Lemma}
+\newtheorem{áll}[tét]{Állítás}
+\newtheorem{köv}[tét]{Következmény}
+
+%Ha a megjegyzések és a példak szövegét nem akarjuk dőlten szedni, akkor
+%az alábbi parancs után kell őket definiální:
+\theoremstyle{definition}
+\newtheorem{megj}[tét]{Megjegyzés}
+\newtheorem{pld}[tét]{Példa}
+
+%%% Saját parancsok %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Az angol kifejezések kiemelése.
+\newcommand{\inenglish}[1]{\textsl{#1}}
+\newcommand{\inenglishfn}[1]{\footnotesize{\inenglish{#1}}}
+
+%%% A függvények a szövegben.
+\newcommand{\func}[1]{{\textsl{#1}}}
+
+%_ %%% Globális beállítás a WRAPFIGUREnak.
+%_ % A WRAPFIGUREnak adhatjuk meg az egész dolgozatban, hogy milyen globális
+%_ % stratégia szerint helyezze el a képeket: r - right, o - outside, l - left,
+%_ % i - inside, stb. A magyar makrónév melletti érv a lehetséges ütközések
+%_ % elkerülése. Az alapbeállítás az 'r', a szakdolgozat egyoldalas
+%_ % nyomtatása miatt, ha azonban az aktuális helyzet megkívánja, a makró
+%_ % használatát mellőzzük.
+%_ \newcommand{\melyikoldalra}{r}
+%_ %\newcommand{\melyikoldalra}{o} % az oldal külső felére
+%_ 
+%_ %%% Az INCLUDEGRAPHICS ,,resolution'' kulcsszavának definíciója.
+%_ % resolution=<res in DPI>
+%_ %\makeatletter
+%_ %\define@key{Gin}{resolution}{\pdfimageresolution=#1\relax}
+%_ %\makeatother
+%_ 
+%_ %%% Az INCLUDEGRAPHICS kulcsszavainak globális beállításai.
+%_ %\setkeys{Gin}{resolution=2400}
+%_ 
+%_ %%% Az INCLUDEGRAPHICS kivágások globális eltolása.
+%_ % A néhány sorral lentebbi \setpdfoffset{0pt}{0pt} átállításával a
+%_ % a kivágást globálisan eltolhatjuk.
+%_ \makeatletter
+%_ \define@key{Gin}{xviewport}[]{%
+%_   \begingroup\edef\x{%
+%_     \endgroup\noexpand\setkeys{Gin}{viewport=\x@viewport}%
+%_   }\x
+%_ }
+%_ \newlength{\Xoffset}
+%_ \newlength{\Yoffset}
+%_ \newcommand*{\setpdfoffset}[2]{%
+%_   \setlength{\Xoffset}{#1}%
+%_   \setlength{\Yoffset}{#2}%
+%_ }
+%_ \newcommand*{\setviewport}[4]{%
+%_   \def\x@viewport{%
+%_     {\the\dimexpr#1-\Xoffset}
+%_     {\the\dimexpr#2-\Yoffset}
+%_     {\the\dimexpr#3-\Xoffset}
+%_     {\the\dimexpr#4-\Yoffset}%
+%_   }%
+%_ }
+%_ \makeatother
+%_ % Paraméterek:
+%_ %   #1 - llx, alsó bal sarok x érték,
+%_ %   #2 - lly, alsó bal sarok y érték,
+%_ %   #3 - urx, felső jobb sarok x érték,
+%_ %   #4 - ury, felső jobb sarok y érték,
+%_ %   #5 - szabad lokális beállítások,
+%_ %   #6 - a beszúrandó kép.
+%_ \newcommand{\includegraphicskivagas}[6]{
+%_     \setpdfoffset{0pt}{0pt}
+%_     \setviewport{#1}{#2}{#3}{#4}
+%_     \includegraphics[xviewport,clip,#5]{#6}
+%_ }
+%_ % Az 'img/built/dataflow_eps' képre specializált INCLUDEGRAPHICSKIVAGAS.
+%_ \newcommand{\includedataflowkivagas}[5]{
+%_     \includegraphicskivagas{#1}{#2}{#3}{#4}{scale=0.6,#5}
+%_     {img/built/dataflow_eps}
+%_ }
+
+%\hyphenation{sza-bály el-kü-lö-ní-tett}
+
+%_ \newcommand{\komment}[1]{\iffalse{#1}\fi}
+
+%_ %%% A lábjegyzeteket nem töri át másik oldalra
+%_ \interfootnotelinepenalty=10000
+
+%%% Saját parancsok %%% VÉGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Margók:
+\hoffset -1in
+\voffset -1in
+\oddsidemargin 35mm
+\textwidth 150mm
+\topmargin 15mm
+\headheight 10mm
+\headsep 5mm
+\textheight 237mm
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Címlap                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %A FEJEZETEK KEZDŐOLDALAINAK FEJ ÉS LÁBLÉCE:
+    %a plain oldalstílust kell átdefiniálni, hogy ott ne legyen fejléc:
+    \fancypagestyle{plain}{%
+    %ez mindent töröl:
+    \fancyhf{}
+    % a láblécbe jobboldalra kerüljön az oldalszám:
+    \fancyhead[R]{\thepage}
+    %elválasztó vonal sem kell:
+    \renewcommand{\headrulewidth}{0pt}
+    }
+
+    %A TÖBBI OLDAL FEJ ÉS LÁBLÉCE:
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{\rightmark}
+    \fancyhead[R]{\thepage}
+
+
+    %A címoldalra se fej- se lábléc nem kell:
+    \thispagestyle{empty}
+
+    \begin{center}
+    \vspace*{1cm}
+    {\Large\bf Szegedi Tudományegyetem}
+
+    \vspace{0.5cm}
+
+    {\Large\bf Informatikai Intézet}
+
+    \vspace*{3.8cm}
+
+    % Tíz sorral fentebb is át kell írni!!!
+    {\LARGE\bf Fuzz tesztelő keretrendszer bűvítése webes felülettel}
+
+
+    \vspace*{3.6cm}
+
+    %{\Large Diplomamunka}
+    {\Large Szakdolgozat}
+
+    \vspace*{4cm}
+
+    %Értelemszerűen megváltoztatandó:
+    {\large
+    \begin{tabular}{c@{\hspace{4cm}}c}
+    \emph{Készítette:}     &\emph{Témavezető:}\\
+    \bf{Kéri Tamás József}     &\bf{Dr. Kiss Ákos}\\
+    informatika szakos     &egyetemi adjunktus\\
+    hallgató &
+    \end{tabular}
+    }
+
+    \vspace*{2.3cm}
+
+    {\Large
+    Szeged
+    \\
+    \vspace{2mm}
+    2019
+    }
+    \end{center}
+
+
+    % 1.5-ös sorköz:
+    % ezt javasolják:  \linespread{1.25}
+    % és ez bevált, de ehhez kellett a \usepackage{setspace} csomag betöltése.
+    \onehalfspacing
+
+
+%_ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%_ %%   Mottó                                                          %%
+%_ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%_ 
+%_     \clearpage
+%_     \thispagestyle{empty}
+%_     {
+%_     \setlength\epigraphrule{0pt}
+%_     \linespread{1.0}\epigraph{\small\emph{,,A világ csak híd, menj át rajta,
+%_     de ne építs rajta házat.''}}{\small(IHS)}
+%_     }
+%_ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Tartalomjegyzék                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Feladatkiírás                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    %A \chapter* parancs nem ad a fejezetnek sorszámot
+    \chapter*{Feladatkiírás}
+    %A tartalomjegyzékben mégis szerepeltetni kell, mint szakasz(section) szerepeljen:
+    \addcontentsline{toc}{section}{Feladatkiírás}
+
+Elméletileg Ákos adja meg, de inkább elecroval dumáljátok le...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Tartalmi összefoglaló                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter*{Tartalmi összefoglaló}
+    \addcontentsline{toc}{section}{Tartalmi összefoglaló}
+
+%A tartalmi összefoglalónak tartalmaznia kell (rövid, legfeljebb egy oldalas, összefüggő megfogalmazásban)
+%a következőket: a téma megnevezése, a megadott feladat megfogalmazása - a feladatkiíráshoz viszonyítva-,
+%a megoldási mód, az alkalmazott eszközök, módszerek, az elért eredmények, kulcsszavak (4-6 darab).
+
+%Az összefoglaló nyelvének meg kell egyeznie a dolgozat nyelvével. Ha a dolgozat idegen nyelven készül,
+%magyar nyelvű tartalmi összefoglaló készítése is kötelező (külön lapon), melynek terjedelmét a TVSZ szabályozza.
+
+    \subsubsection*{A téma megnevezése}
+
+ABC
+%_ A \emph{World Wide Web Consortium} (W3C) által \emph{Canvas 2D Context} néven
+%_ 2015-ben elfogadott ajánlás \emph{Path API} részének megvalósítása
+%_ \emph{OpenGL~ES~2.0} alapokon.
+
+    \subsubsection*{A megadott feladat megfogalmazása}
+
+ABC
+%_ A \emph{World Wide Web Consortium} (W3C) által \emph{Canvas 2D Context} néven
+%_ 2015-ben elfogadott ajánlás \emph{Path API} részének megvalósítása
+%_ \emph{OpenGL~ES~2.0} alapokon.
+
+    \subsubsection*{A megoldásmód}
+
+ABC ez majd t9r9lni kell \cite{Herczeg:2014:GL2D}
+%_ A \emph{World Wide Web Consortium} (W3C) által \emph{Canvas 2D Context} néven
+%_ 2015-ben elfogadott ajánlás \emph{Path API} részének megvalósítása
+%_ \emph{OpenGL~ES~2.0} alapokon.
+
+    \subsubsection*{Alkalmazott eszközök, módszerek}
+
+
+    \subsubsection*{Elért eredmények}
+
+
+    \subsubsection*{Kulcsszavak}
+
+%_  Canvas~2D~Context, OpenGL~ES~2.0, számítógépes grafika (\inenglish{computer
+%_  graphics}), szabad alakzat (\inenglish{path}), trapéz tesszelláció
+%_  (\inenglish{trapezoid tessellation})
+%_ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Bevezetés                                                      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter*{Bevezetés}
+    \label{sec:Bevezetés}
+    \addcontentsline{toc}{section}{Bevezetés}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Háttér                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter{Háttér}
+    \label{sec:Hatter}
+
+
+    \section{Fuzzinator}
+    \label{sec:Fuzzinator}
+
+
+    \section{Tornado}
+    \label{sec:Tornado}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   ...                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter{A WUI interfész}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Használat és eredmények                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter{Használat és eredmények}
+    %\addcontentsline{toc}{section}{Használat és eredmények}
+
+
+    \section{Használat}
+
+    \section{Eredmények}
+    \label{sec:Eredmények}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Összefoglalás                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter{Összefoglalás}
+    %\addcontentsline{toc}{section}{Összefoglalás}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Irodalomjegyzék                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \bibliography{src/bib/cites}{}
+  \bibliographystyle{src/bib/huplain}
+  \addtocontents{toc}{\ }
+  \addcontentsline{toc}{section}{Irodalomjegyzék}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Mellékletek                                                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter*{Mellékletek}
+    \newcommand{\thischaptertitle}{Mellékletek}
+    \addcontentsline{toc}{section}{Mellékletek}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Nyilatkozat                                                    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter*{Nyilatkozat}
+    %Egy üres sort adunk a tartalomjegyzékhez:
+    \addcontentsline{toc}{section}{Nyilatkozat}
+    %\hspace{\parindent}
+
+    % A nyilatkozat szövege más titkos és nem titkos dolgozatok esetében.
+    % Csak az egyik típusú nyilatkozatnak kell a dolgozatban szerepelni
+    % A pontok helyére az adatok értelemszerűen behelyettesítendők és
+    % a szakdolgozat /diplomamunka szó megfelelően kiválasztandó.
+
+
+    % A nyilatkozat szövege TITKOSNAK NEM MINŐSÍTETT dolgozatban a következő:
+    % A pontokkal jelölt szövegrészek értelemszerűen a szövegszerkesztőben és
+    % nem kézzel helyettesítendők:
+
+    \noindent
+
+Alulírott
+%\makebox[4cm]{\dotfill}
+\textbf{Kéri Tamás József}, \textit{programtervező informatikus}
+szakos hallgató, kijelentem, hogy a dolgozatomat a \textit{Szegedi
+Tudományegyetem},
+\textit{Informatikai Tanszékcsoport
+Szoftverfejlesztés
+%\makebox[4cm]{\dotfill}
+Tanszékén} készítettem,
+\textit{programtervező informatikus BSc.}
+%\makebox[4cm]{\dotfill}
+diploma megszerzése érdekében.
+
+Kijelentem, hogy a dolgozatot más szakon korábban nem védtem meg, saját
+munkám eredménye, és csak a hivatkozott forrásokat (szakirodalom,
+eszközök, stb.) használtam fel.
+
+Tudomásul veszem, hogy szakdolgozatomat
+% / diplomamunkámat
+a Szegedi Tudományegyetem Informatikai Tanszékcsoport könyvtárában, a
+helyben olvasható könyvek között helyezik el.
+
+    \vspace*{2cm}
+
+    \begin{tabular}{lc}
+    Szeged, \today\
+    \hspace{2cm} & \makebox[6cm]{\dotfill} \\
+    & aláírás \\
+    \end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   Köszönetnyilvánítás                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \chapter*{Köszönetnyilvánítás}
+    \addcontentsline{toc}{section}{Köszönetnyilvánítás}
+
+
+\end{document}

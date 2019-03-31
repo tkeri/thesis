@@ -1,0 +1,12 @@
+build
+3rdparty
+
+# python precompilation files
+*.pyc
+__pycache__
+
+# vim swapfiles
+.*.swp
+
+# 'temp' directory for local usage
+temp
